@@ -1,5 +1,6 @@
 package com.xr.biz.impl;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,7 +40,7 @@ public class CustomerBizImpl implements CustomerBiz {
 	@Override
 	@Transactional
 	public List<Customer> getAllCustomerByWhere(String name, String phone, String zdn, String fdn) {
-		List<Customer> customers = customerDaoImpl.getAllCustomerByWhere(name, phone, zdn, fdn);
+		List<Customer> customers = customerDaoImpl.getAllCustomerByWhere(name, phone, zdn,  fdn);
 		
 		return customers;
 	}
@@ -47,7 +48,24 @@ public class CustomerBizImpl implements CustomerBiz {
 	public Customer findByCustomer(Customer customer) throws Exception {
 		return customerDaoImpl.findByCustomer(customer);
 	}
-
-	
-
+	@Override
+	public String FindAgeByCustomerWhereDB(String zd, String fd, String start, String end) {
+		String jsonString=null;
+		try {
+			int[] findAgeByCustomerWhere = customerDaoImpl.FindAgeByCustomerWhere(zd, fd, start, end);
+			jsonString = JSON.toJSONString(findAgeByCustomerWhere);
+			redisUtil.setString("jsonString", jsonString);
+		} catch (SQLException e) {
+			return FindAgeByCustomerWhereRedis(zd,fd,start,end);
+		}
+		return jsonString;
+	}
+	@Override
+	public String FindAgeByCustomerWhereRedis(String zd, String fd, String start, String end) {
+		try {
+			return redisUtil.getString("jsonString");
+		} catch (Exception e) {
+			return null;
+		}
+	}
 }

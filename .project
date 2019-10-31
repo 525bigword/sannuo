@@ -36,11 +36,6 @@
 	</natures>
 	<linkedResources>
 		<link>
-			<name>src/main/webapp/loging/menumanage.jsp</name>
-			<type>1</type>
-			<location>C:/Users/Administrator/Desktop/sannuo/src/main/webapp/loging/menumanage.jsp</location>
-		</link>
-		<link>
 			<name>src/main/java/com/xr/entity/Allxx.java</name>
 			<type>1</type>
 			<location>C:/Users/Administrator/Desktop/sannuo/src/main/java/com/xr/entity/Allxx.java</location>

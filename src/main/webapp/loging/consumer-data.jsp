@@ -206,11 +206,27 @@ xblock {
           elem: '#end' //指定元素
         });
       });
+	function cx(){
+		var zd=$("#c1 option:selected").val();
+		var fd=$("#c2 option:selected").val();
+		var start=$("#start option:selected").val();
+		var end=$("#start option:selected").val();
+		$.ajax({
+			url : '${path}/query.do',
+			type : 'post',
+			dataType : 'json',
+			async : false,
+			success : function(data) {
+				count = data.jis;
+				//bis = data.bis;
+			}
+		});
+	}
 		$(function() {
 
 			//婴幼儿(0-6)  儿童(7-12)   少年(12-15)  青年(15-30)  中年(30-50)  老年(≥50)
 			var glucose = [ "婴幼儿", "儿童", "少年", "青年", "中年", "老年" ];
-			var count = [ 1, 2, 2, 2, 3, 10 ]; //异常人次
+			var count = [ 1, 2, 2, 2, 3, 10 ]; //数据
 			$.ajax({
 				url : '${path}/query.do',
 				type : 'post',

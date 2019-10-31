@@ -9,4 +9,6 @@ public interface CustomerBiz {
 	String getAllCustomerByRole(Boss boss,String bj);
 	List<Customer> getAllCustomerByWhere(String name, String phone, String zdn, String fdn);
 	Customer findByCustomer(Customer customer) throws Exception;
+	String FindAgeByCustomerWhereDB(String zd,String fd,String start,String end);
+	String FindAgeByCustomerWhereRedis(String zd,String fd,String start,String end);
 }

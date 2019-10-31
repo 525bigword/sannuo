@@ -1,5 +1,6 @@
 package com.xr.dao;
 
+import java.sql.SQLException;
 import java.util.List;
 
 
@@ -9,5 +10,5 @@ public interface CustomerDao {
 	List<Customer> getCustomerByRole(Boss boss,String bj);
 	List<Customer> getAllCustomerByWhere(String name,String phone,String zdn,String fdn);
 	Customer findByCustomer(Customer customer) throws Exception;
-	
+	int[] FindAgeByCustomerWhere(String zd,String fd,String start,String end) throws SQLException;
 }
